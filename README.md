@@ -24,7 +24,7 @@ steps:
 
 - name: Upload to CI-Speed
   if: success() || failure()
-  uses: thedumbterminal/ci-speed-github-action@main
+  uses: thedumbterminal/ci-speed-github-action@v1.0.0
   with:
     token: ${{ secrets.CI_SPEED_AUTH_TOKEN }}
     results: test_results.xml
