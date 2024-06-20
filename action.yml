@@ -1,6 +1,6 @@
 name: ci-speed
 author: thedumbterminal
-description: Interact with CI-Speed
+description: Upload test results to CI-Speed
 inputs:
   token:
     description: 'API authentication token'
