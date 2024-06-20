@@ -1,6 +1,9 @@
 name: ci-speed
 author: thedumbterminal
 description: Upload test results to CI-Speed
+branding:
+  icon: 'fast-forward'
+  color: 'blue'
 inputs:
   token:
     description: 'API authentication token'
