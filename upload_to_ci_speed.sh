@@ -15,6 +15,7 @@ echo "Project: ${PROJECT_NAME} Build: ${BUILD_REF}"
 
 for RESULT in ${RESULTS}; do
   if [ -f "${RESULT}" ]; then
+    echo "Uploading '${RESULT}' ..."
     curl --fail -X "POST" \
       "${HOST}/api/test_runs/" \
       -H "accept: application/json" \
