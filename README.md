@@ -24,7 +24,7 @@ steps:
 
 - name: Upload to CI-Speed
   if: success() || failure()
-  uses: thedumbterminal/ci-speed-github-action@v1.0.0
+  uses: thedumbterminal/ci-speed-github-action@v1.1.0
   with:
     token: ${{ secrets.CI_SPEED_AUTH_TOKEN }}
     results: test_results.xml
@@ -35,4 +35,9 @@ Please ensure to run the upload step after your steps that generate XML results.
 Using the `if` statement in the example above, the upload step will still run if the project's tests fail.
 
 ### Uploading multiple results
-Just add the step multiple times referencing the correct results file in each step.
+Use multiple filenames in the `results` argument separated by spaces. For example:
+
+```
+  with:
+    results: results1.xml results2.xml
+```

@@ -13,17 +13,18 @@ HOST=https://ci-speed.herokuapp.com
 
 echo "Project: ${PROJECT_NAME} Build: ${BUILD_REF}"
 
-if [ -f "$RESULTS" ]; then
-  curl --fail -X "POST" \
-    "${HOST}/api/test_runs/" \
-    -H "accept: application/json" \
-    -H "Authentication-Token: ${CI_SPEED_AUTH_TOKEN}" \
-    -H "Content-Type: multipart/form-data" \
-    -F "file=@${RESULTS};type=text/xml" \
-    -F "project_name=${PROJECT_NAME}" \
-    -F "build_ref=${BUILD_REF}" \
-    -F "commit_sha=${COMMIT}"
-else
-  echo "No results file found"
-  exit 1
-fi
+for RESULT in ${RESULTS}; do
+  if [ -f "${RESULT}" ]; then
+    curl --fail -X "POST" \
+      "${HOST}/api/test_runs/" \
+      -H "accept: application/json" \
+      -H "Authentication-Token: ${CI_SPEED_AUTH_TOKEN}" \
+      -H "Content-Type: multipart/form-data" \
+      -F "file=@${RESULT};type=text/xml" \
+      -F "project_name=${PROJECT_NAME}" \
+      -F "build_ref=${BUILD_REF}" \
+      -F "commit_sha=${COMMIT}"
+  else
+    echo "Results file '${RESULT}' not found"
+  fi
+done
