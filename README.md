@@ -41,3 +41,7 @@ Use multiple filenames in the `results` argument separated by spaces. For exampl
   with:
     results: results1.xml results2.xml
 ```
+
+### Environment Variables
+
+* CI_SPEED_HOST - API host name if a custom CI-Speed instance is being used.
