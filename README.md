@@ -7,12 +7,24 @@ https://github.com/thedumbterminal/ci-speed
 
 ### Inputs
 
-* token - Your authentication token for CI-Speed
-* results - The file name and path to the XML test results to upload
+#### token
+Your authentication token for CI-Speed
 
 Please store your authentication token as a secret in your repository's settings, for more info see the GitHub documentation:
 
 https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions
+
+#### results
+The file name and path to the XML test results to upload
+
+#### action
+The action to be performed for CI-Speed
+
+The following actions are supported:
+
+* upload - Upload results to CI-Speed.
+* start - Log the start time if a CI run.
+* finish - Log the finish time of a CI run.
 
 ### Example
 Add the following to your workflow YAML:

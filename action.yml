@@ -10,7 +10,11 @@ inputs:
     required: true
   results:
     description: 'XML results files to upload'
-    required: true
+    required: false
+  action:
+    description: 'Action to be performed on CI-Speed'
+    required: false
+    default: 'upload'
 runs:
   using: "composite"
   steps:
@@ -19,21 +23,9 @@ runs:
       shell: bash
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
-    - name: Start
-      run: |
-        upload_to_ci_speed.sh start "${{ github.repository }}" "${{ github.run_id }}" "${{ github.sha }}"
-      shell: bash
-      env:
-        CI_SPEED_AUTH_TOKEN: ${{ inputs.token }}
     - name: Upload
       run: |
-        upload_to_ci_speed.sh upload "${{ github.repository }}" "${{ github.run_id }}" "${{ github.sha }}" "${{ inputs.results }}"
-      shell: bash
-      env:
-        CI_SPEED_AUTH_TOKEN: ${{ inputs.token }}
-    - name: Finish
-      run: |
-        upload_to_ci_speed.sh finish "${{ github.repository }}" "${{ github.run_id }}" "${{ github.sha }}"
+        upload_to_ci_speed.sh "${{ inputs.action }}" "${{ github.repository }}" "${{ github.run_id }}" "${{ github.sha }}" "${{ inputs.results }}"
       shell: bash
       env:
         CI_SPEED_AUTH_TOKEN: ${{ inputs.token }}

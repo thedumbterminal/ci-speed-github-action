@@ -15,8 +15,12 @@ HOST=${CI_SPEED_HOST:-$DEFAULT_HOST}
 
 function upload () {
   echo "Upload..."
+  if [${RESULTS} eq ""]; then
+    echo "No results file provided"
+    exit 3
+  fi
   for RESULT in ${RESULTS}; do
-    if [ -f "${RESULT}" ]; then
+    if [ --f "${RESULT}" ]; then
       echo "Uploading '${RESULT}' ..."
       curl --fail-with-body -X "POST" \
         "${HOST}/api/test_runs/" \
